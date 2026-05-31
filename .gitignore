@@ -38,3 +38,9 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Internal planning (not published)
+/ROADMAP.md
+
+# Server deploy bundle (generated)
+/dist/

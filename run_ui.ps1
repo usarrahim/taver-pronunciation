@@ -14,4 +14,4 @@ if (-not (Test-Path $espeak)) { Write-Host "Note: espeak-ng not found; free-text
 
 Start-Process "http://127.0.0.1:$Port"
 Write-Host "Taver demo -> http://127.0.0.1:$Port" -ForegroundColor Green
-& $exe --model (Join-Path $root $Model) --vocab (Join-Path $root $Vocab) --espeak $espeak --root (Join-Path $root "web") --port $Port
+& $exe --host 127.0.0.1 --model (Join-Path $root $Model) --vocab (Join-Path $root $Vocab) --espeak $espeak --root (Join-Path $root "web") --port $Port

@@ -286,9 +286,10 @@ bool read_request(SOCKET c, std::string& method, std::string& path,
 }  // namespace
 
 int main(int argc, char** argv) {
-  std::string model = "models/phoneme.onnx";
+  std::string model = "models/phoneme.int8.onnx";
   std::string vocab = "models/phoneme_vocab.txt";
   std::string espeak = "third_party/espeak/eSpeak NG/espeak-ng.exe";
+  std::string host = "127.0.0.1";
   int port = 8080;
   int backend = TAVER_BACKEND_AUTO;
   for (int i = 1; i < argc; ++i) {
@@ -299,6 +300,7 @@ int main(int argc, char** argv) {
     else if (a == "--espeak") espeak = next(espeak.c_str());
     else if (a == "--root") g_root = next(g_root.c_str());
     else if (a == "--port") port = std::atoi(next("8080").c_str());
+    else if (a == "--host") host = next("127.0.0.1");
     else if (a == "--backend") { std::string b = next("auto");
       backend = (b == "cpu") ? TAVER_BACKEND_CPU : (b == "cuda") ? TAVER_BACKEND_CUDA
               : (b == "dml" || b == "directml") ? TAVER_BACKEND_DIRECTML : TAVER_BACKEND_AUTO; }
@@ -327,13 +329,13 @@ int main(int argc, char** argv) {
   sockaddr_in addr{};
   addr.sin_family = AF_INET;
   addr.sin_port = htons(static_cast<u_short>(port));
-  inet_pton(AF_INET, "127.0.0.1", &addr.sin_addr);
+  inet_pton(AF_INET, host.c_str(), &addr.sin_addr);
   if (bind(srv, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)) != 0 || listen(srv, 16) != 0) {
-    std::printf("Cannot bind to 127.0.0.1:%d\n", port);
+    std::printf("Cannot bind to %s:%d\n", host.c_str(), port);
     return 1;
   }
 
-  std::printf("\n  Taver UI ready ->  http://127.0.0.1:%d\n", port);
+  std::printf("\n  Taver UI ready ->  http://%s:%d\n", host.c_str(), port);
   std::printf("  (open it in your browser, allow the microphone, pick a word, hold to record)\n\n");
 
   for (;;) {

@@ -9,6 +9,9 @@ Audio → wav2vec2 (ONNX) → CTC alignment → GOP scores → coach feedback
 ```
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Live demo](https://img.shields.io/badge/demo-live-3b6fd9)](http://89.168.59.242:8080)
+
+**Try it:** [http://89.168.59.242:8080](http://89.168.59.242:8080) — live pronunciation coach (microphone required, scored on the server).
 
 ---
 
@@ -47,9 +50,12 @@ Details: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
 # 2) Build
 .\build.ps1
 
-# 3) Live demo (uses INT8 by default)
+# 3) Live demo (local)
 .\run_ui.ps1
 # → http://127.0.0.1:8080
+
+# Public demo (same UI, hosted):
+# http://89.168.59.242:8080
 
 # 4) CLI (INT8 recommended for production-like footprint)
 .\build\bin\taver_cli.exe --model models\phoneme.int8.onnx --text "three" --wav samples\three.wav
@@ -80,6 +86,27 @@ taver_destroy(eng);
 ```
 
 See [docs/LMS.md](docs/LMS.md) for LMS / xAPI notes.
+
+---
+
+## Deploy public demo (Windows VPS)
+
+Pack only what the server needs (~350 MB), upload to **89.168.59.242**, listen on all interfaces:
+
+```powershell
+# On your dev machine (after build + setup)
+.\scripts\pack-server.ps1
+
+# Upload + run (SSH/SCP — OpenSSH client on Windows)
+.\scripts\deploy-remote.ps1 -User Administrator -HostName 89.168.59.242
+
+# Or manual upload:
+scp -r dist\taver-server\* Administrator@89.168.59.242:C:\taver-demo\
+ssh Administrator@89.168.59.242 "powershell -File C:\taver-demo\run-demo.ps1"
+```
+
+On the VPS, allow inbound **TCP 8080** in Windows Firewall. Demo URL for README/GitHub:
+**http://89.168.59.242:8080**
 
 ---
 
@@ -115,12 +142,6 @@ docs/              DEPLOYMENT, ARCHITECTURE, LMS, ENTERPRISE
 .\tools\.venv\Scripts\python.exe tools\eval_speechocean.py --limit 200
 .\tools\.venv\Scripts\python.exe tools\make_report.py
 ```
-
----
-
-## Roadmap
-
-[ROADMAP.md](ROADMAP.md) — Phase 1–4 (accuracy, UX, platform ports, commercial).
 
 ---
 
