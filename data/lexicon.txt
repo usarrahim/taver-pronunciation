@@ -1,0 +1,11 @@
+# Taver pronunciation overrides (word phonemes in model vocabulary symbols).
+# Format: word phoneme1 phoneme2 ...
+# Lowercase word keys. Lines starting with # are comments.
+
+three θ ɹ iː
+tree t ɹ iː
+think θ ɪ ŋ k
+sink s ɪ ŋ k
+water w ɔ t ɚ
+hello h ə l oʊ
+comfortable k ʌ m f ɚ t ə b l

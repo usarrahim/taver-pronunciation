@@ -1,0 +1,40 @@
+# Build output
+/build/
+*.obj
+*.ilk
+*.pdb
+*.exp
+*.lib
+*.exe
+!build/bin/*.exe
+
+# Vendored binaries (regenerate via scripts/setup.ps1)
+/third_party/onnxruntime/
+/third_party/espeak/
+/third_party/*.zip
+/third_party/*.msi
+
+# ML models (large; export with tools/export_model.py)
+/models/*.onnx
+
+# Generated audio & evaluation artifacts
+/samples/
+/eval/*.json
+/eval/*.txt
+/eval/run_*.txt
+
+# Python
+/tools/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# IDE / OS
+.vs/
+.vscode/
+*.user
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

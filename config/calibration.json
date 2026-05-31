@@ -1,0 +1,12 @@
+{
+  "gop_tau": 1.6,
+  "fair_threshold": 75.0,
+  "substituted_cap": 49.0,
+  "deleted_cap": 15.0,
+  "silence_lp": -3.5,
+  "utterance_calibration": {
+    "scale": 0.10,
+    "offset": 0.0,
+    "comment": "human_0_10 ≈ scale * engine_0_100 + offset (fit on speechocean762)"
+  }
+}

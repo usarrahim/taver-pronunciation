@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" role="img" aria-label="Taver logo">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b6fd9"/>
+      <stop offset="100%" stop-color="#6b4fd4"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="28" fill="url(#g)"/>
+  <!-- stylised waveform = listening / phoneme analysis -->
+  <path d="M28 62c0-12 6-22 14-22s14 10 14 22-6 22-14 22-14-10-14-22z" fill="#fff" opacity=".95"/>
+  <path d="M52 62c0-18 8-32 18-32s18 14 18 32-8 32-18 32-18-14-18-32z" fill="#fff"/>
+  <path d="M76 62c0-10 5-18 11-18s11 8 11 18-5 18-11 18-11-8-11-18z" fill="#fff" opacity=".95"/>
+  <!-- T mark -->
+  <path d="M38 38h44v10H62v34H58V48H38V38z" fill="#fff" opacity=".22"/>
+</svg>
